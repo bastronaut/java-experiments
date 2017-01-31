@@ -1,4 +1,4 @@
-package defaultmethods;
+package com.bastronaut.defaultmethods;
 
 /**
  * Created by BSijtsma on 30-01-2017.

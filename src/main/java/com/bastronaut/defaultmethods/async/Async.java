@@ -1,9 +1,11 @@
-package async;
+package com.bastronaut.defaultmethods.async;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
+import org.apache.http.impl.nio.client.HttpAsyncClients;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +19,7 @@ import static org.apache.http.HttpHeaders.USER_AGENT;
 public class Async {
 
 
-    public static void doGet() throws IOException {
+    public static void doSyncGet() throws IOException {
         String url = "http://www.google.com/search?q=httpClient";
 
         HttpClient client = HttpClientBuilder.create().build();
@@ -42,5 +44,18 @@ public class Async {
         }
         System.out.println("done");
 
+    }
+
+    public static void doAsyncGet() throws IOException {
+        CloseableHttpAsyncClient asynchttpclient = HttpAsyncClients.createDefault();
+
+        try {
+            asynchttpclient.start();
+
+            final HttpGet getRequest = new HttpGet("http://www.google.com/search?q=httpClient");
+
+        } finally {
+            asynchttpclient.close();
+        }
     }
 }
