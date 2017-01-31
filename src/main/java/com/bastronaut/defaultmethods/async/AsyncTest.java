@@ -11,7 +11,7 @@ public class AsyncTest {
     }
 
     @org.junit.Test
-    public void doAsyncGet() {
+    public void doAsyncGet() throws Exception {
         Async.doAsyncGet();
     }
 

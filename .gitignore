@@ -49,3 +49,7 @@ out/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+target/*
+target
+/target/**
