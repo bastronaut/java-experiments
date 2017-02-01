@@ -1,4 +1,4 @@
-package com.bastronaut.defaultmethods.async;
+package com.bastronaut.async;
 
 /**
  * Created by Bas on 23-1-2017.
