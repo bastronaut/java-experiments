@@ -27,12 +27,7 @@
             <artifactId>httpasyncclient</artifactId>
             <version>4.1.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.caliper/caliper -->
-        <dependency>
-            <groupId>com.google.caliper</groupId>
-            <artifactId>caliper</artifactId>
-            <version>0.5-rc1</version>
-        </dependency>
+
 
 
     </dependencies>
