@@ -22,7 +22,6 @@ public class HashMapExperiment <K, V> {
     private int n;
 
 
-
     public static void hashMapToString() {
         HashMap<String, String> testMap = new HashMap<>();
         testMap.put("name", "bas");
@@ -35,14 +34,17 @@ public class HashMapExperiment <K, V> {
         int hashCode = getHashcode(key);
         // the array size (number of bins) is smaller than the possible hashcode
         // use the modulus of the hascode to determine the bin
-        int keyBin = hashCode
+        // first naive implementation that overrides existing elements
+        int keyBin = hashCode % itemContainer.length;
+        itemContainer[keyBin] = value;
     }
 
     public V get(K key) {
-        return null;
+        int hashCode = getHashcode(key);
+        return (V) itemContainer[hashCode % itemContainer.length];
     }
 
-    // Poor way to get a hash code just for purposes of understanding the process.
+    // Poor way to get a hash code just for purposes of understanding the process
     // rules of a hashCode() function:
     // 1. Invoking it more than once on the same object must consistantly return the same
     // integer, provided no info used in equals() is modified
@@ -67,6 +69,11 @@ public class HashMapExperiment <K, V> {
         int midLetterIndex = getIndexInAlphabet(midLetter);
         int lastLetterindex = getIndexInAlphabet(lastLetter);
         return firstLetterIndex + midLetterIndex + lastLetterindex;
+    }
+
+    // obviously incorrect method for simulation
+    public boolean equals(K keyOne, K keyTwo) {
+        return getHashcode(keyOne) == getHashcode(keyTwo);
     }
 
     public int size() {
