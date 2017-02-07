@@ -1,6 +1,8 @@
 package com.bastronaut.hashmap;
 
 
+import com.bastronaut.linkedlist.LinkedList;
+
 import java.util.HashMap;
 
 /**
@@ -8,7 +10,7 @@ import java.util.HashMap;
  *
  * Experiment with recreating a HashMap data structure:
  * - a Aey / value data structure
- * - Has fast (O(1) lookup through the use of 'bins' in which it stores an item
+ * - Has fast (O(1) lookup through the use of 'bins' in which it stores an value
  * - The bin is based on the hashCode of the key
  * - Start with simple implementation of a HashMap
  */
@@ -18,7 +20,8 @@ public class HashMapExperiment <K, V> {
                         "i", "j" ,"k", "l", "m", "n", "o", "p", "q",
                         "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
-    private Object[] itemContainer = new Object[16]; // default size for hashmap in Oracle Java I think
+    //  a more advanced implementation would allow to set initial size and load factor for resizing
+    private LinkedList<String, String>[] itemContainer = new LinkedList[16]; // default size for hashmap in Oracle Java
     private int n;
 
 
@@ -69,11 +72,6 @@ public class HashMapExperiment <K, V> {
         int midLetterIndex = getIndexInAlphabet(midLetter);
         int lastLetterindex = getIndexInAlphabet(lastLetter);
         return firstLetterIndex + midLetterIndex + lastLetterindex;
-    }
-
-    // obviously incorrect method for simulation
-    public boolean equals(K keyOne, K keyTwo) {
-        return getHashcode(keyOne) == getHashcode(keyTwo);
     }
 
     public int size() {

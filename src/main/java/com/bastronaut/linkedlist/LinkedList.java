@@ -7,29 +7,29 @@ import java.util.EmptyStackException;
  * A custom linked list implementation to be used for ex in the HashMap experiment.
  * This implements a stack with push() and pop() for now
  */
-public class LinkedList <T> {
+public class LinkedList <K, V> {
 
     private int N;
     private Node bottomNode;
     private Node topNode;
 
-    public void push(T item) {
+    public void push(K key, V item) {
         if (isEmpty()) {
-            bottomNode = new Node(item);
+            bottomNode = new Node(key, item);
             topNode = bottomNode;
         } else {
-            Node newTopNode = new Node(item);
+            Node newTopNode = new Node(key, item);
             newTopNode.next = topNode;
             topNode = newTopNode;
         }
         N++;
     }
-    public T pop() {
-        T returnItem;
+    public V pop() {
+        V returnItem;
         if (isEmpty()) {
             throw new EmptyStackException();
         } else {
-            returnItem = topNode.item;
+            returnItem = topNode.value;
             N--;
             if (isEmpty()) {
                 topNode = null;
@@ -50,8 +50,14 @@ public class LinkedList <T> {
     }
 
     private class Node {
-        public Node(T item) { this.item = item; }
-        public T item;
+        public Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        public K key;
+        public V value;
         public Node next;
+
     }
 }
