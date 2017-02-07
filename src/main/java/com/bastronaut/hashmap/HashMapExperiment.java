@@ -1,4 +1,4 @@
-package com.bastronaut.various;
+package com.bastronaut.hashmap;
 
 
 import java.util.HashMap;
