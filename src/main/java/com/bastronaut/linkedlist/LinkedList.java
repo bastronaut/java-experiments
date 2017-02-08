@@ -41,6 +41,20 @@ public class LinkedList <K, V> {
         return returnItem;
     }
 
+    // dedicated search method that traverses the LL in search for the key
+    public V get(K key) {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        Node tempNode = bottomNode;
+        if (bottomNode.key.equals(key)) {
+            return bottomNode.value;
+        } else {
+            tempNode = bottomNode.next; // TODO
+        }
+
+    }
+
     public int getSize() {
         return N;
     }

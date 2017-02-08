@@ -21,7 +21,7 @@ public class HashMapExperiment <K, V> {
                         "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     //  a more advanced implementation would allow to set initial size and load factor for resizing
-    private LinkedList<String, String>[] itemContainer = new LinkedList[16]; // default size for hashmap in Oracle Java
+    private LinkedList<K, V>[] itemContainer = new LinkedList[16]; // default size for hashmap in Oracle Java
     private int n;
 
 
@@ -35,16 +35,20 @@ public class HashMapExperiment <K, V> {
 
     public void put(K key, V value) {
         int hashCode = getHashcode(key);
-        // the array size (number of bins) is smaller than the possible hashcode
-        // use the modulus of the hascode to determine the bin
-        // first naive implementation that overrides existing elements
+        // Storing as a linkedlist
         int keyBin = hashCode % itemContainer.length;
-        itemContainer[keyBin] = value;
+        if (itemContainer[keyBin] == null) {
+            LinkedList<K, V> ll = new LinkedList<K, V>();
+            ll.push(key, value);
+        } else {
+            itemContainer[keyBin].push(key, value);
+        }
     }
 
     public V get(K key) {
         int hashCode = getHashcode(key);
-        return (V) itemContainer[hashCode % itemContainer.length];
+
+//        return (V) itemContainer[hashCode % itemContainer.length];
     }
 
     // Poor way to get a hash code just for purposes of understanding the process
