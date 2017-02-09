@@ -2,6 +2,7 @@ package com.bastronaut.hashmap;
 
 
 import com.bastronaut.linkedlist.LinkedList;
+import com.sun.istack.internal.Nullable;
 
 import java.util.HashMap;
 
@@ -9,8 +10,9 @@ import java.util.HashMap;
  * Created by BSijtsma on 01-02-2017.
  *
  * Experiment with recreating a HashMap data structure:
- * - a Aey / value data structure
+ * - a Key / value data structure
  * - Has fast (O(1) lookup through the use of 'bins' in which it stores an value
+ * (O(1) is assuming proper initialization with size and load factor)
  * - The bin is based on the hashCode of the key
  * - Start with simple implementation of a HashMap
  */
@@ -45,10 +47,12 @@ public class HashMapExperiment <K, V> {
         }
     }
 
+    @Nullable
     public V get(K key) {
         int hashCode = getHashcode(key);
-        return (V) "hi";
-//        return (V) itemContainer[hashCode % itemContainer.length];
+        int hashIndex = hashCode & itemContainer.length;
+        LinkedList<K, V> ll = itemContainer[hashIndex];
+        return ll.search(key);
     }
 
     // Poor way to get a hash code just for purposes of understanding the process
@@ -79,7 +83,7 @@ public class HashMapExperiment <K, V> {
     }
 
     public int size() {
-        return 0; // TODO
+        return n; // TODO
     }
 
     private int getIndexInAlphabet(String letter) {

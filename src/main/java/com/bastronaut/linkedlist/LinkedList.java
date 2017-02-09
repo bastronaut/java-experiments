@@ -47,17 +47,26 @@ public class LinkedList <K, V> {
     // dedicated search method that traverses the LL in search for the key
     @Nullable
     public V search(K key) {
+        Node node = searchNodeByKey(key);
+        if (node != null) {
+            return node.value;
+        }
+        return null;
+    }
+
+    @Nullable
+    private Node searchNodeByKey(K key) {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
         Node tempNode = topNode;
-        V value = recursiveSearch(tempNode, key);
-        return value;
+        Node node = recursiveSearch(tempNode, key);
+        return node;
     }
 
-    private V recursiveSearch(Node node, K key) {
+    private Node recursiveSearch(Node node, K key) {
         if (node.key.equals(key)) {
-            return node.value;
+            return node;
         } else {
             if (node.next != null) {
                 return recursiveSearch(node.next, key);
