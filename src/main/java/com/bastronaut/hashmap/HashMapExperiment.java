@@ -47,7 +47,7 @@ public class HashMapExperiment <K, V> {
 
     public V get(K key) {
         int hashCode = getHashcode(key);
-
+        return (V) "hi";
 //        return (V) itemContainer[hashCode % itemContainer.length];
     }
 

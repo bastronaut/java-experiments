@@ -11,19 +11,17 @@ public class LinkedListTest {
 
     @Test
     public void pop() throws Exception {
-        LinkedList<String> ll = new LinkedList<>();
-        ll.push("Hi");
-        assertTrue(ll.pop().equals("Hi"));
-        ll.push("1");
-        ll.push("2");
-        ll.push("3");
-        assertTrue(ll.pop().equals("3"));
-        assertTrue(ll.getSize() == (2));
-        assertTrue(ll.pop().equals("2"));
-        assertFalse(ll.isEmpty());
-        assertTrue(ll.pop().equals("1"));
-        assertTrue(ll.getSize() == (0));
-        assertTrue(ll.isEmpty());
+        LinkedList<String, String> ll = new LinkedList<>();
+        ll.push("name", "bas");
+        ll.push("age", "henk");
+        ll.push("thing", "thang");
+        ll.push("yo", "lo");
+        assertTrue(ll.search("name").equals("bas"));
+        assertTrue(ll.search("x") == null);
+        assertTrue(ll.search("yo").equals("lo"));
+        assertTrue(ll.search("thing").equals("thang"));
+        assertTrue(ll.search("age").equals("henk"));
+
     }
 
 }

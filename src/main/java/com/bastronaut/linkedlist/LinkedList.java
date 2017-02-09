@@ -1,5 +1,7 @@
 package com.bastronaut.linkedlist;
 
+import com.sun.istack.internal.Nullable;
+
 import java.util.EmptyStackException;
 
 /**
@@ -41,18 +43,28 @@ public class LinkedList <K, V> {
         return returnItem;
     }
 
+
     // dedicated search method that traverses the LL in search for the key
-    public V get(K key) {
+    @Nullable
+    public V search(K key) {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        Node tempNode = bottomNode;
-        if (bottomNode.key.equals(key)) {
-            return bottomNode.value;
-        } else {
-            tempNode = bottomNode.next; // TODO
-        }
+        Node tempNode = topNode;
+        V value = recursiveSearch(tempNode, key);
+        return value;
+    }
 
+    private V recursiveSearch(Node node, K key) {
+        if (node.key.equals(key)) {
+            return node.value;
+        } else {
+            if (node.next != null) {
+                return recursiveSearch(node.next, key);
+            } else {
+                return null;
+            }
+        }
     }
 
     public int getSize() {
