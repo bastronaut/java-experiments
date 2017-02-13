@@ -50,9 +50,20 @@ public class HashMapExperiment <K, V> {
     @Nullable
     public V get(K key) {
         int hashCode = getHashcode(key);
-        int hashIndex = hashCode & itemContainer.length;
+        int hashIndex = hashCode % itemContainer.length;
         LinkedList<K, V> ll = itemContainer[hashIndex];
         return ll.search(key);
+    }
+
+    public boolean hasKey(K key) {
+        int hashCode = getHashcode(key);
+        int hashIndex = hashCode % itemContainer.length;
+        if (itemContainer[hashIndex] == null) {
+            return false;
+        } else {
+            LinkedList<K, V> ll = itemContainer[hashIndex];
+            return (ll.search(key) != null);
+        }
     }
 
     // Poor way to get a hash code just for purposes of understanding the process
@@ -68,7 +79,7 @@ public class HashMapExperiment <K, V> {
     // 3. take the middle character, get the letter index from the alphabet.
     // If the characters are not present in the alphabet, take alphabetsize + 1
     // sum these ints -> hashcode.
-    public int getHashcode(K key) {
+    private int getHashcode(K key) {
         String lowercaseKey = key.toString().toLowerCase();
         if (lowercaseKey.length() == 0) {
             return alphabet.length + 1;
