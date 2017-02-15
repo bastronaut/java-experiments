@@ -6,8 +6,8 @@ import java.util.EmptyStackException;
 
 /**
  * Created by BSijtsma on 07-02-2017.
- * A custom linked list implementation to be used for ex in the HashMap experiment.
- * This implements a stack with push() and pop() for now
+ * A custom linked list implementation to be used in the HashMap experiment.
+ * This implements a stack with push() and pop(), and a  V search(K key)
  */
 public class LinkedList <K, V> {
 
@@ -20,9 +20,15 @@ public class LinkedList <K, V> {
             bottomNode = new Node(key, item);
             topNode = bottomNode;
         } else {
-            Node newTopNode = new Node(key, item);
-            newTopNode.next = topNode;
-            topNode = newTopNode;
+
+            Node existingNode = searchNodeByKey(key);
+            if (existingNode == null) {
+                Node newTopNode = new Node(key, item);
+                newTopNode.next = topNode;
+                topNode = newTopNode;
+            } else {
+                existingNode.value = item;
+            }
         }
         N++;
     }
@@ -43,7 +49,6 @@ public class LinkedList <K, V> {
         return returnItem;
     }
 
-
     // dedicated search method that traverses the LL in search for the key
     @Nullable
     public V search(K key) {
@@ -57,7 +62,7 @@ public class LinkedList <K, V> {
     @Nullable
     private Node searchNodeByKey(K key) {
         if (isEmpty()) {
-            throw new EmptyStackException();
+            return null;
         }
         Node tempNode = topNode;
         Node node = recursiveSearch(tempNode, key);

@@ -11,10 +11,10 @@ import static org.junit.Assert.*;
 public class LinkedListTest {
 
     LinkedList<String, String> ll = new LinkedList<>();
+    String yo = "" ;
 
     @Before
     public void setUp() throws Exception {
-        LinkedList<String, String> ll = new LinkedList<>();
         ll.push("name", "bas");
         ll.push("age", "henk");
         ll.push("thing", "thang");
@@ -24,16 +24,29 @@ public class LinkedListTest {
 
     @Test
     public void search() throws Exception {
-        LinkedList<String, String> ll = new LinkedList<>();
+        System.out.println(yo);
         assertTrue(ll.search("name").equals("bas"));
         assertTrue(ll.search("x") == null);
         assertTrue(ll.search("yo").equals("lo"));
         assertTrue(ll.search("thing").equals("thang"));
         assertTrue(ll.search("age").equals("henk"));
+        assertFalse(ll.search("age").equals("henkx"));
+        assertFalse(ll.search("name").equals("thang"));
     }
 
     @Test
     public void pop() {
 
+    }
+
+    @Test
+    public void push() {
+        assertTrue(ll.search("name").equals("bas"));
+        ll.push("name", "yolo");
+        assertTrue(ll.search("name").equals("yolo"));
+        ll.push("name", "yolox");
+        assertTrue(ll.search("name").equals("yolox"));
+        assertFalse(ll.search("name").equals("yolo"));
+        assertFalse(ll.search("name").equals("bas"));
     }
 }
