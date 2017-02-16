@@ -25,15 +25,21 @@ public class HashMapExperimentTest {
 
     // TODO TDD test still fails
     @Test
-    public void hasKey() throws Exception {
+    public void hasKey() {
+        System.out.println(customMap);
         assertTrue(customMap.hasKey("name"));
         assertTrue(customMap.hasKey("color"));
         assertTrue(customMap.hasKey("thing"));
     }
 
     @Test
-    public void put() {
-
+    public void get() {
+        assertTrue(customMap.get("name").equals("bas"));
+        assertTrue(customMap.get("age").equals("henk"));
+        assertTrue(customMap.get("yo").equals("lo"));
+        assertTrue(customMap.get("xxx") == null);
+        assertTrue(customMap.get("thing").equals("thang"));
+        assertTrue(customMap.get("thing").equals("thang"));
     }
 
 }
