@@ -84,8 +84,11 @@ public class LinkedList <K, V> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Node node = topNode;
-        while (node.next != null) {
+        if (!isEmpty()) {
             sb.append(node.toString());
+        }
+        while (node.next != null) {
+            sb.append(node.next.toString());
             node = node.next;
         }
         return sb.toString();
@@ -111,7 +114,7 @@ public class LinkedList <K, V> {
 
 
         public String toString() {
-            return this.key.toString() + ": " + this.value + "\n";
+            return this.key.toString() + ": " + this.value + "; ";
         }
     }
 

@@ -4,6 +4,8 @@ import com.bastronaut.linkedlist.LinkedList;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.*;
 
 /**
@@ -23,17 +25,25 @@ public class HashMapExperimentTest {
         this.customMap = customMap;
     }
 
-    // TODO TDD test still fails
+   @Test
+   public void testPut() {
+       String mapString = customMap.toString();
+       assertTrue(mapString.contains("name: bas"));
+       assertTrue(mapString.contains("age: henk"));
+       assertTrue(mapString.contains("thing: thang"));
+       assertTrue(mapString.contains("yo: lo"));
+       assertFalse(mapString.contains("yo: x"));
+   }
+
     @Test
-    public void hasKey() {
-        System.out.println(customMap);
+    public void testHasKey() {
         assertTrue(customMap.hasKey("name"));
-        assertTrue(customMap.hasKey("color"));
+        assertFalse(customMap.hasKey("color"));
         assertTrue(customMap.hasKey("thing"));
     }
 
     @Test
-    public void get() {
+    public void testGet() {
         assertTrue(customMap.get("name").equals("bas"));
         assertTrue(customMap.get("age").equals("henk"));
         assertTrue(customMap.get("yo").equals("lo"));
@@ -42,4 +52,54 @@ public class HashMapExperimentTest {
         assertTrue(customMap.get("thing").equals("thang"));
     }
 
+    @Test
+    public void testPutMany() {
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        customMap.put("ha", "hi");
+        assertTrue(customMap.size() == 5);
+        HashMap<String, String> hm = new HashMap<>();
+
+    }
+
+    // TODO: make hashmap accept constructor with initial size and load factor
+    // TODO: build hashmap resizer
 }

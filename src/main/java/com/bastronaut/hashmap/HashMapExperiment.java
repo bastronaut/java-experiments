@@ -22,6 +22,8 @@ public class HashMapExperiment <K, V> {
                         "i", "j" ,"k", "l", "m", "n", "o", "p", "q",
                         "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
+    private int n;
+
     //  a more advanced implementation would allow to set initial size and load factor for resizing
     private LinkedList<K, V>[] itemContainer = new LinkedList[16]; // default size for hashmap in Oracle Java
 
@@ -34,7 +36,6 @@ public class HashMapExperiment <K, V> {
             LinkedList<K, V> ll = new LinkedList<K, V>();
             ll.push(key, value);
             itemContainer[keyBin] = ll;
-            System.out.println("the keybin:" + keyBin);
         } else {
             itemContainer[keyBin].push(key, value);
         }
@@ -45,7 +46,11 @@ public class HashMapExperiment <K, V> {
         int hashCode = getHashcode(key);
         int hashIndex = hashCode % itemContainer.length;
         LinkedList<K, V> ll = itemContainer[hashIndex];
-        return ll.search(key);
+        if (itemContainer[hashIndex] != null) {
+            return ll.search(key);
+        } else {
+            return null;
+        }
     }
 
     public boolean hasKey(K key) {
@@ -96,13 +101,14 @@ public class HashMapExperiment <K, V> {
         return alphabet.length + 1;
     }
 
+    public int size() {
+        return n;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int i = 1;
         for (LinkedList<K, V> ll : itemContainer) {
             if (ll == null) {
-                System.out.println(i);
-                i++;
                 continue;
             }
             sb.append(ll.toString());
