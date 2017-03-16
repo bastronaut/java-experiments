@@ -10,28 +10,35 @@ import com.sun.istack.internal.Nullable;
  *
  * Experiment with recreating a HashMap data structure:
  * - a Key / value data structure
- * - Has fast (O(1) lookup through the use of 'bins' in which it stores an value
+ * - Has fast (O(1) lookup through the use of 'bins' in which it stores values
  * (O(1) is assuming proper initialization with size and load factor)
  * - The bin is based on the hashCode of the key
  * - Start with simple implementation of a HashMap
+ *
+ * TODO:
+ * resize array used in hashmap when load factor is reached
+ *
  */
 public class HashMapExperiment <K, V> {
 
     private int n;
 
-    //  a more advanced implementation would allow to set initial size and load factor for resizing
     private LinkedList<K, V>[] itemContainer = new LinkedList[16]; // default size for hashmap in Oracle Java
 
 
     public void put(K key, V value) {
         int hashCode = getHashcode(key);
-        // Storing as a linkedlist
+
         int keyBin = hashCode % itemContainer.length;
         if (itemContainer[keyBin] == null) {
-            LinkedList<K, V> ll = new LinkedList<K, V>();
+            LinkedList<K, V> ll = new LinkedList<>();
             ll.push(key, value);
             itemContainer[keyBin] = ll;
+            n++;
         } else {
+            if (itemContainer[keyBin].search(key) == null) {
+                n++;
+            }
             itemContainer[keyBin].push(key, value);
         }
     }
@@ -56,6 +63,28 @@ public class HashMapExperiment <K, V> {
         } else {
             LinkedList<K, V> ll = itemContainer[hashIndex];
             return (ll.search(key) != null);
+        }
+    }
+
+    /**
+     * Remove the items from the hashmap with the associated key if present
+     *
+     * @param key to remove from hashmap
+     * @return  associated value from key, or null if key not present
+     */
+    public V remove(K key) {
+        int hashCode = getHashcode(key);
+        int keyBin = hashCode % itemContainer.length;
+
+        if (itemContainer[keyBin] == null) {
+            return null;
+        } else {
+            V value = itemContainer[keyBin].search(key);
+            if (value != null) {
+                n--;
+
+            }
+            return value;
         }
     }
 

@@ -25,15 +25,33 @@ public class HashMapExperimentTest {
         this.customMap = customMap;
     }
 
+    @Test
+    public void testOriginal() {
+        HashMap<String, String> hm = new HashMap<>();
+        hm.remove("bob");
+        hm.put("yo", "henk");
+        hm.remove("yolo");
+    }
+
    @Test
    public void testPut() {
        String mapString = customMap.toString();
+       System.out.println(mapString);
        assertTrue(mapString.contains("name: bas"));
        assertTrue(mapString.contains("age: henk"));
        assertTrue(mapString.contains("thing: thang"));
        assertTrue(mapString.contains("yo: lo"));
        assertFalse(mapString.contains("yo: x"));
    }
+
+    @Test
+    public void testRemove() {
+        String mapString = customMap.toString();
+        System.out.println(mapString);
+        assertTrue(mapString.contains("name: bas"));
+        customMap.remove("name");
+        System.out.println(customMap);
+    }
 
     @Test
     public void testHasKey() {
@@ -95,7 +113,7 @@ public class HashMapExperimentTest {
         customMap.put("ha", "hi");
         customMap.put("ha", "hi");
         customMap.put("ha", "hi");
-        assertTrue(customMap.size() == 5);
+//        assertTrue(customMap.size() == 5);
         HashMap<String, String> hm = new HashMap<>();
 
     }

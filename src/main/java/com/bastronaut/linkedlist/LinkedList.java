@@ -7,7 +7,7 @@ import java.util.EmptyStackException;
 /**
  * Created by BSijtsma on 07-02-2017.
  * A custom linked list implementation to be used in the HashMap experiment.
- * This implements a stack with push() and pop(), and a  V search(K key)
+ * Stack with push(), pop(), remove(), search()
  */
 public class LinkedList <K, V> {
 
@@ -92,6 +92,47 @@ public class LinkedList <K, V> {
             node = node.next;
         }
         return sb.toString();
+    }
+
+    /**
+     * Removing from linkedlist: set reference from prev node to next node, and value to null for gc
+     *  todo: untested, write testcases
+     * @param key
+     * @return
+     */
+    public V remove(K key) {
+        if (isEmpty()) {
+            return null;
+        }
+        V value = null;
+
+        if (bottomNode.key == key) {
+            value = bottomNode.value;
+
+            if (bottomNode.next != null) {
+                bottomNode.value = null;
+                bottomNode = bottomNode.next;
+            }
+        } else {
+            Node currentNode = bottomNode;
+            Node prevNode = bottomNode;
+            if (currentNode.next != null) {
+                currentNode = currentNode.next;
+            }
+
+            while (currentNode != null) {
+                if (currentNode.key == key) {
+                    value = currentNode.value;
+                    currentNode.value = null;
+                    prevNode.next = currentNode.next;
+                    return value;
+                } else {
+                    prevNode = currentNode;
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+        return value;
     }
 
     public int getSize() {
