@@ -32,7 +32,11 @@ public class Person {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(int length) { 
         this.length = length;
+    }
+
+    public String toString() {
+        return String.valueOf(this.age);
     }
 }

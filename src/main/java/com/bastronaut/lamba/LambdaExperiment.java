@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class LambdaExperiment {
 
-
+    // naive implementation without lambda
     public static void printOldPeople(List<Person> persons, IPersonTester tester) {
 
         for (Person p : persons) {
@@ -22,9 +22,6 @@ public class LambdaExperiment {
            }
         }
     }
-
-
-
 
 
 }
