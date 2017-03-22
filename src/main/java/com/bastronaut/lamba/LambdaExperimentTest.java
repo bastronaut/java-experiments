@@ -4,12 +4,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 
 /**
  * Created by Bas on 20-3-2017.
  */
-public class LambdaTest {
+public class LambdaExperimentTest {
 
     ArrayList<Person> personnel;
 
@@ -52,5 +53,17 @@ public class LambdaTest {
     @Test
     public void testPrintOldPeopleFunctionalInterface() {
         LambdaExperiment.printOldPeople(personnel, (Person p) -> p.getAge() > 65);
+    }
+
+    // The IPersonTester functional interface is useful yet so basic, that a built in standard functional interface
+    // can be used: Predicate <T>  in java.util.function. It contains only: boolean test(T t).
+    @Test
+    public void testPrintOldPeopleWithPredicate() {
+        LambdaExperiment.printOldPeople(personnel, p -> p.getAge() > 0 );
+    }
+
+    @Test
+    public void testTredicateFunctionExperiment() {
+        
     }
 }

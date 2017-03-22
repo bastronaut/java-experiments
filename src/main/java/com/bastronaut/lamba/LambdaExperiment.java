@@ -1,6 +1,7 @@
 package com.bastronaut.lamba;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Created by Bas on 20-3-2017.
@@ -14,14 +15,28 @@ import java.util.List;
 public class LambdaExperiment {
 
     // naive implementation without lambda
-    public static void printOldPeople(List<Person> persons, IPersonTester tester) {
-
-        for (Person p : persons) {
+    public static void printOldPeople(List<Person> personnel, IPersonTester tester) {
+        for (Person p : personnel) {
            if (tester.test(p)) {
                System.out.println(p.toString());
            }
         }
     }
 
+    public static void printOldPeopleWithPredicate(List<Person> personnel, Predicate<Person> tester) {
+      for (Person p: personnel) {
+          if (tester.test(p)) {
+              System.out.println(p);
+          }
+      }
+    }
+
+    public static void forEachConsumerExperiment(List<String> sentences) {
+        sentences.forEach((s)-> System.out.println(s));
+    }
+
+    public static void predicateFunctionExperiment(List<String> sentences, Predicate<String> tester) {
+        sentences.forEach((s) -> tester.test(s));
+    }
 
 }
