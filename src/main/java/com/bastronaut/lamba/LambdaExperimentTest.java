@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 
@@ -63,7 +64,27 @@ public class LambdaExperimentTest {
     }
 
     @Test
-    public void testTredicateFunctionExperiment() {
-        
+    public void testForEachPredicateFunctionExperiment() {
+        LambdaExperiment.forEachPredicateFunctionExperiment(personnel, (Person p) -> p.getAge() > 65);
+    }
+
+    @Test
+    public void testForEachConsumerExperiment() {
+        LambdaExperiment.forEachConsumerExperiment(personnel);
+    }
+
+    @Test
+    public void testforEachConsumerExperimentTwo() {
+        LambdaExperiment.forEachConsumerExperimentTwo(personnel, (p) -> System.out.println(p));
+    }
+
+    @Test
+    public void testforEachConsumerExperimentTwoImpl() {
+        LambdaExperiment.forEachConsumerExperimentTwo(personnel, new Consumer<Person>() {
+            @Override
+            public void accept(Person person) {
+                System.out.println(person);
+            }
+        });
     }
 }

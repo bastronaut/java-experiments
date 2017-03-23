@@ -1,6 +1,7 @@
 package com.bastronaut.lamba;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -31,12 +32,16 @@ public class LambdaExperiment {
       }
     }
 
-    public static void forEachConsumerExperiment(List<String> sentences) {
-        sentences.forEach((s)-> System.out.println(s));
+    public static void forEachPredicateFunctionExperiment(List<Person> personnel, Predicate<Person> tester) {
+        personnel.forEach((p) -> tester.test(p));
     }
 
-    public static void predicateFunctionExperiment(List<String> sentences, Predicate<String> tester) {
-        sentences.forEach((s) -> tester.test(s));
+    public static void forEachConsumerExperiment(List<Person> personnel) {
+        personnel.forEach((p)-> System.out.println(p));
+    }
+
+    public static void forEachConsumerExperimentTwo(List<Person> personnel, Consumer<Person> accepter) {
+        personnel.forEach(accepter);
     }
 
 }
