@@ -44,4 +44,9 @@ public class LambdaExperiment {
         personnel.forEach(accepter);
     }
 
+
+    public static void embeddedConsumer(List<Person> personnel, Consumer<List<Person>> printer) {
+        printer.accept(personnel);
+    }
+
 }

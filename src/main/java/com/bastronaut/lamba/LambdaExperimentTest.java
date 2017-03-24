@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -75,7 +76,7 @@ public class LambdaExperimentTest {
 
     @Test
     public void testforEachConsumerExperimentTwo() {
-        LambdaExperiment.forEachConsumerExperimentTwo(personnel, (p) -> System.out.println(p));
+        LambdaExperiment.forEachConsumerExperimentTwo(personnel, p -> System.out.println(p));
     }
 
     @Test
@@ -84,6 +85,19 @@ public class LambdaExperimentTest {
             @Override
             public void accept(Person person) {
                 System.out.println(person);
+            }
+        });
+    }
+
+    @Test
+    public void testEmbeddedConsumer() {
+        LambdaExperiment.embeddedConsumer(personnel, new Consumer<List<Person>>() {
+
+            @Override
+            public void accept(List<Person> persons) {
+                for (Person p : persons) {
+                    System.out.println(p.getAge());
+                }
             }
         });
     }
