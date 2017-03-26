@@ -2,6 +2,7 @@ package com.bastronaut.lamba;
 
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -47,6 +48,17 @@ public class LambdaExperiment {
 
     public static void embeddedConsumer(List<Person> personnel, Consumer<List<Person>> printer) {
         printer.accept(personnel);
+    }
+
+    // too many params but experiment to check all the functional interfaces
+    public static void consumerFunctionApply(List<Person> personnel, Function<Person, String> mapper, Predicate<Person> tester, Consumer<Person> accepter) {
+        personnel.forEach((p) -> {
+            String name = mapper.apply(p);
+            if (tester.test(p)) {
+                accepter.accept(p);
+                System.out.println("method was tested for: ".concat(name));
+            }
+        });
     }
 
 }

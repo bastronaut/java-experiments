@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 
@@ -19,8 +20,8 @@ public class LambdaExperimentTest {
     @Before
     public void setup() {
         ArrayList<Person> personnel = new ArrayList<Person>();
-        Person hanks = new Person(80);
-        Person tom = new Person(34);
+        Person hanks = new Person("hanks" , 80);
+        Person tom = new Person("tom", 34);
         personnel.add(hanks);
         personnel.add(tom);
         this.personnel = personnel;
@@ -100,5 +101,31 @@ public class LambdaExperimentTest {
                 }
             }
         });
+    }
+
+    
+    @Test
+    public void testConsumerFunctionApply() {
+        LambdaExperiment.consumerFunctionApply(personnel,
+                new Function<Person, String>() {
+
+                    @Override
+                    public String apply(Person p) {
+                        return p.getName();
+                    }
+                },
+                new Predicate<Person>() {
+                    @Override
+                    public boolean test(Person p) {
+                        return p.getAge() > 50;
+                    }
+                }
+                ,
+                new Consumer<Person>() {
+                    @Override
+                    public void accept(Person p) {
+                        System.out.println(p);
+                    }
+                });
     }
 }

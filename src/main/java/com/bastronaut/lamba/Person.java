@@ -8,7 +8,8 @@ public class Person {
     int length;
     String name;
 
-    public Person(int age) {
+    public Person(String name, int age) {
+        this.name = name;
         this.age = age;
     }
 
@@ -37,6 +38,6 @@ public class Person {
     }
 
     public String toString() {
-        return String.valueOf(this.age);
+        return this.name + " " + String.valueOf(this.age);
     }
 }
