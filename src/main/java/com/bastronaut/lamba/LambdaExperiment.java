@@ -51,7 +51,7 @@ public class LambdaExperiment {
     }
 
     // too many params but experiment to check all the functional interfaces
-    public static void consumerFunctionApply(List<Person> personnel, Function<Person, String> mapper, Predicate<Person> tester, Consumer<Person> accepter) {
+    public static void functionPredicateConsumer(List<Person> personnel, Function<Person, String> mapper, Predicate<Person> tester, Consumer<Person> accepter) {
         personnel.forEach((p) -> {
             String name = mapper.apply(p);
             if (tester.test(p)) {
@@ -59,6 +59,17 @@ public class LambdaExperiment {
                 System.out.println("method was tested for: ".concat(name));
             }
         });
+    }
+
+    // functional interfaces with generics - unreadable but ya
+    public static <X, Y> void genericsFuncInterfaces(Iterable<X> source, Function<X, Y> mapper,
+                                                    Predicate<X> predicate, Consumer<Y> consumer) {
+        for (X x : source) {
+            Y mapped = mapper.apply(x);
+            if (predicate.test(x)) {
+                consumer.accept(mapped);
+            }
+        }
     }
 
 }

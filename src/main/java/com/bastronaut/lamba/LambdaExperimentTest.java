@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 
 /**
  * Created by Bas on 20-3-2017.
+ * more of a function runner to experiment with lambdas, not that many test cases
  */
 public class LambdaExperimentTest {
 
@@ -106,7 +107,7 @@ public class LambdaExperimentTest {
     
     @Test
     public void testConsumerFunctionApply() {
-        LambdaExperiment.consumerFunctionApply(personnel,
+        LambdaExperiment.functionPredicateConsumer(personnel,
                 new Function<Person, String>() {
                     @Override
                     public String apply(Person p) {
@@ -131,9 +132,19 @@ public class LambdaExperimentTest {
     // same as function above but with lambda expressions
     @Test
     public void testConsumerFunctionApplyLambdas() {
-        LambdaExperiment.consumerFunctionApply(personnel,
+        LambdaExperiment.functionPredicateConsumer(personnel,
                 p -> p.getName(),
                 p -> p.getAge() > 50,
                 p -> System.out.println(p));
+    }
+
+    // print only the Person objects that are over 50
+    @Test
+    public void testGenericsFuncInterfaces() {
+        LambdaExperiment.genericsFuncInterfaces(personnel,
+                p -> p.getName(),
+                p -> p.getAge() > 50,
+                s -> System.out.println(s)
+                );
     }
 }
