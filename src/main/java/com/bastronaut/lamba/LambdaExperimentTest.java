@@ -108,7 +108,6 @@ public class LambdaExperimentTest {
     public void testConsumerFunctionApply() {
         LambdaExperiment.consumerFunctionApply(personnel,
                 new Function<Person, String>() {
-
                     @Override
                     public String apply(Person p) {
                         return p.getName();
@@ -127,5 +126,14 @@ public class LambdaExperimentTest {
                         System.out.println(p);
                     }
                 });
+    }
+
+    // same as function above but with lambda expressions
+    @Test
+    public void testConsumerFunctionApplyLambdas() {
+        LambdaExperiment.consumerFunctionApply(personnel,
+                p -> p.getName(),
+                p -> p.getAge() > 50,
+                p -> System.out.println(p));
     }
 }
