@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 
 /**
@@ -23,8 +24,12 @@ public class LambdaExperimentTest {
         ArrayList<Person> personnel = new ArrayList<Person>();
         Person hanks = new Person("hanks" , 80);
         Person tom = new Person("tom", 34);
+        Person arnold = new Person("arnold", 17);
+        Person schwarz = new Person("schwarz", 71);
         personnel.add(hanks);
         personnel.add(tom);
+        personnel.add(arnold);
+        personnel.add(schwarz);
         this.personnel = personnel;
     }
 
@@ -146,5 +151,23 @@ public class LambdaExperimentTest {
                 p -> p.getAge() > 50,
                 s -> System.out.println(s)
                 );
+    }
+
+    // using the stream function. Stream is part of the functional programming paradigm
+    // difference from iterable is that it can only be consumed once?
+    @Test
+    public void testAggregateExperiment() {
+        LambdaExperiment.aggregateExperiment(personnel);
+    }
+
+    // similar with Stream.of()
+    @Test
+    public void aggregateStreamExperiment() {
+        Person hanks = new Person("hanks" , 80);
+        Person tom = new Person("tom", 34);
+        Person arnold = new Person("arnold", 17);
+        Person schwarz = new Person("schwarz", 71);
+
+        LambdaExperiment.aggregateStreamExperiment(Stream.of(hanks, tom, arnold, schwarz));
     }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * Created by Bas on 20-3-2017.
@@ -72,4 +73,21 @@ public class LambdaExperiment {
         }
     }
 
+    // stream functions.
+    public static void aggregateExperiment(List<Person> source) {
+        source.stream()
+                .filter(p -> p.getAge() > 10)
+                .map(p -> p.getName())
+                .skip(1)
+                .limit(2)
+                .forEach(name -> System.out.println(name));
+    }
+
+    public static void aggregateStreamExperiment(Stream<Person> stream) {
+        stream.filter(p -> p.getAge() > 10)
+                .map(p -> p.getName())
+                .skip(1)
+                .limit(2)
+                .forEach(name -> System.out.println(name));
+    }
 }
