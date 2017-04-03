@@ -1,9 +1,10 @@
-package com.bastronaut.various;
+package com.bastronaut.arraylist;
 
 import java.util.ArrayList;
 
 /**
  * Created by BSijtsma on 03-04-2017.
+ *
  */
 public class ArrayListExperiment {
 

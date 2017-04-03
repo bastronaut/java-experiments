@@ -1,4 +1,4 @@
-package com.bastronaut.various;
+package com.bastronaut.classcasting;
 
 /**
  * Created by BSijtsma on 03-04-2017.
