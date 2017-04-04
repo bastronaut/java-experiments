@@ -19,5 +19,10 @@ public class RideableImpl implements Rideable {
 
     public static void main(String[] args) {
         new RideableImpl().go(8);
+
+        Rideable r = new RideableImpl();
+//        RideableImpl ri = new Rideable(); // not allowed, has no implementation
+//        Rideable rr = new Rideable(); // ridable abstract, cannot be instantiated
+        System.out.println(r.getGait());
     }
 }

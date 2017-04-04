@@ -32,6 +32,17 @@ public class Gamma extends Beta {
         System.out.println("a: "+ a.echo()); // prints: beta, remains a Beta() object but is treated as Alpha
         System.out.println("b: "+ b.echo());
         System.out.println("c: "+ c.echo());
+
+        Gamma gg = new Gamma();
+        Beta bb = (Beta) gg;
+        System.out.println(bb.echo());
+
+        // Here we force a class cast by first creating the superclass
+        // Compiler will not catch this, wil; be an exception at runtime
+        Beta bbb = new Beta();
+        Gamma ggg = (Gamma) bbb;
+        System.out.println(ggg.echo());
+
     }
 
 }

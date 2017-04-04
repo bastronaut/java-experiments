@@ -1,6 +1,8 @@
 package com.bastronaut.arraylist;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by BSijtsma on 03-04-2017.
@@ -33,10 +35,17 @@ public class ArrayListExperiment {
         System.out.println(list.toString());
     }
 
+    static void testConvertToArraylistOrder() {
+        String[] test = new String[]{"1", "2", "3", "4", "5", "6"};
+        List<String> list = Arrays.asList(test); // remains same order
+        // stackoverflow: very efficient, uses Array behind the scene and simply changes a reference in the constructor
+        System.out.println(list.toString());
+    }
 
     public static void main(String[] args) {
 //        testRemoveIndex();
 //        testRemoveObject();
+        testConvertToArraylistOrder();
     }
 
 
