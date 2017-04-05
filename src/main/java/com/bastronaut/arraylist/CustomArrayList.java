@@ -3,7 +3,7 @@ package com.bastronaut.arraylist;
 /**
  * Created by BSijtsma on 03-04-2017.
  *
- * custom arraylist impl with resizing
+ * custom arraylist impl with resizing as practice
  * api:
  *  T get(int index)
  *  T remove(int index)
@@ -27,6 +27,8 @@ public class CustomArrayList <T> {
     }
 
     // removes at index and moves all remaining elements in previous slot
+    // TODO: resizing to smaller container when they array is half empty?
+    // search if this is a good idea
     public T remove(int i) {
         if (isOutOfBounds(i)) {
             throw new IndexOutOfBoundsException();
@@ -45,9 +47,10 @@ public class CustomArrayList <T> {
 
     public boolean add(T t) {
         if (isFull()) {
-            container = resize(size() * 2);
+            this.container = resize(this.container, size() * 2);
         }
-
+        this.container[n] = t;
+        n++;
         return false;
     }
 
@@ -63,7 +66,7 @@ public class CustomArrayList <T> {
         return false; // TODO
     }
 
-    private T[] resize(int size) {
+    private T[] resize(T[] container, int size) {
         T[] newContainer = (T[]) new Object[size];
         for (int i = 0; i < container.length; i++) {
             newContainer[i] = container[i];
