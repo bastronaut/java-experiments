@@ -42,7 +42,7 @@ public class CustomArrayListTest {
         assertTrue(list.remove(0).equals("zero"));
         assertTrue(list.remove(0).equals("one"));
         assertTrue(list.remove(2).equals("four"));
-        assertTrue(list.remove(3).equals("five"));
+        assertTrue(list.remove(3).equals("six"));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -102,8 +102,8 @@ public class CustomArrayListTest {
 
     @Test
     public void testIndexOf() {
-        assertTrue(list.indexOf("one") == 0);
-        assertTrue(list.indexOf("seven") == 6);
+        assertTrue(list.indexOf("one") == 1);
+        assertTrue(list.indexOf("seven") == 7);
     }
 
 }

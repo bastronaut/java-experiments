@@ -51,7 +51,7 @@ public class CustomArrayList <T> {
         }
         this.container[n] = t;
         n++;
-        return false;
+        return true;
     }
 
     public int size() {
@@ -59,11 +59,29 @@ public class CustomArrayList <T> {
     }
 
     public int indexOf(T t) {
-        return 0; // TODO
+        if (t == null) {
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < size(); i++) {
+            if (t == container[i]) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public boolean hasValue(T t) {
-        return false; // TODO
+        if (t == null) {
+            throw new IllegalArgumentException();
+        }
+        boolean hasValue = false;
+        for (T val : container) {
+            if (t == val) {
+                hasValue = true;
+                break;
+            }
+        }
+        return hasValue;
     }
 
     private T[] resize(T[] container, int size) {
@@ -75,7 +93,7 @@ public class CustomArrayList <T> {
     }
 
     private boolean isOutOfBounds(int i) {
-        return (i < 0 || i < n-1);
+        return (i < 0 || i > n-1);
     }
 
     private boolean isFull() {
