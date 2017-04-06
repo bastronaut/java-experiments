@@ -1,5 +1,9 @@
 package com.bastronaut.arraylist;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
+
 /**
  * Created by BSijtsma on 03-04-2017.
  *
@@ -13,7 +17,7 @@ package com.bastronaut.arraylist;
  *  int size()
  *
  */
-public class CustomArrayList <T> {
+public class CustomArrayList <T> implements Iterable {
 
     int n;
     T[] container = (T[]) new Object[2]; // default size for easy testing
@@ -101,4 +105,42 @@ public class CustomArrayList <T> {
     }
 
 
+    @Override
+    public Iterator iterator() {
+        return new CustomArrayListIterator();
+    }
+
+    @Override
+    public void forEach(Consumer action) {
+        Iterator it = new CustomArrayListIterator();
+        while (it.hasNext()) {
+            action.accept(it.next());
+        }
+    }
+
+    private class CustomArrayListIterator implements Iterator<T> {
+
+        private int iteratorN = 0;
+
+        @Override
+        public boolean hasNext() {
+            while (iteratorN < n) {
+                iteratorN++;
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public T next() {
+            if (iteratorN == 0) {
+                throw new NoSuchElementException();
+            }
+            if (container[iteratorN-1] == null) {
+                throw new NoSuchElementException();
+            }
+            return container[iteratorN-1];
+        }
+
+    }
 }

@@ -3,6 +3,8 @@ package com.bastronaut.arraylist;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 /**
@@ -106,4 +108,28 @@ public class CustomArrayListTest {
         assertTrue(list.indexOf("seven") == 7);
     }
 
+    @Test
+    public void testIterator() {
+        int i = 0;
+        for (Object s : list) {
+            i++;
+        }
+        assertTrue(i == 8);
+    }
+
+    @Test
+    public void testIteratorTwo() {
+        int i = 0;
+        Iterator listIterator = list.iterator();
+        while (listIterator.hasNext()) {
+            listIterator.next();
+            i++;
+        }
+        assertTrue(i == 8);
+    }
+
+    @Test
+    public void testForEach() {
+        list.forEach((o) -> System.out.println(o));
+    }
 }
