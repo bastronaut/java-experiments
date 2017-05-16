@@ -124,7 +124,7 @@ public class CustomArrayList <T> implements Iterable {
 
         @Override
         public boolean hasNext() {
-            while (iteratorN < n) {
+            if (iteratorN < n) {
                 iteratorN++;
                 return true;
             }

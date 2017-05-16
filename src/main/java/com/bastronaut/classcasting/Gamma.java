@@ -24,6 +24,9 @@ public class Gamma extends Beta {
 
         Alpha a = new Beta();
 
+        Alpha aa = new Gamma();
+        System.out.println("aa : " + aa.echo());
+
         Beta c = new Gamma(); // allowed, superclass from subclass
         Beta b = (Beta) new Gamma(); // allowed, superclass from subclass
         b.betaFunction(); // supertype function ofcourse allowed
@@ -40,8 +43,8 @@ public class Gamma extends Beta {
         // Here we force a class cast by first creating the superclass
         // Compiler will not catch this, wil; be an exception at runtime
         Beta bbb = new Beta();
-        Gamma ggg = (Gamma) bbb;
-        System.out.println(ggg.echo());
+//        Gamma ggg = (Gamma) bbb;
+//        System.out.println(ggg.echo());
 
     }
 
