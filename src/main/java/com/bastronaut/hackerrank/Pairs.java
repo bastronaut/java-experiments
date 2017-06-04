@@ -38,12 +38,8 @@ public class Pairs {
         }
 
         map.entrySet().stream()
-                .filter((e) -> (map.get(k - e.getKey()) != null ))
-                .reduce()
-
-
-
-
+                .filter((e) -> (map.get(k - e.getKey()) != null ));
+//                .reduce();
 
         return 1;
     }
