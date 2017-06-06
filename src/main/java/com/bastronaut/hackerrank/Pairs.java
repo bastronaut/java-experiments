@@ -9,9 +9,23 @@ import java.util.Scanner;
  */
 public class Pairs {
 
-
     public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+
+//        System.out.println("calling pairs");
+//        pairs(new int[]{1, 5, 3, 4, 2}, 2);
+
+
+        System.out.println(0 / 3);
+        System.out.println(1 / 3);
+        System.out.println(2 / 3);
+        System.out.println(3 / 3);
+        System.out.println(4 / 3);
+        System.out.println(5 / 3);
+        System.out.println(6 / 3);
+        System.out.println(7 / 3);
+        System.out.println(8 / 3);
+        System.out.println(9 / 3);
         Scanner in = new Scanner(System.in);
         String line = in.nextLine();
         String[] line_split = line.split(" ");
@@ -28,6 +42,7 @@ public class Pairs {
             numbers[i] = Integer.parseInt(line2_split[i]);
         }
         pairs(numbers, k);
+
     }
 
     public static int pairs(int[] numbers, int k) {
@@ -37,15 +52,14 @@ public class Pairs {
             map.put(i, i);
         }
 
-        map.entrySet().stream()
-                .filter((e) -> (map.get(k - e.getKey()) != null ))
-                .reduce()
+        int count = (int) map.entrySet().stream()
+                .map(i -> i.getKey())
+                .filter(i -> map.get(i - k) != null)
+                .count();
 
+        System.out.println(count);
 
-
-
-
-        return 1;
+        return count;
     }
 }
 
