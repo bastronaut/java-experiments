@@ -42,7 +42,6 @@ public class Pairs {
             numbers[i] = Integer.parseInt(line2_split[i]);
         }
         pairs(numbers, k);
-
     }
 
     public static int pairs(int[] numbers, int k) {

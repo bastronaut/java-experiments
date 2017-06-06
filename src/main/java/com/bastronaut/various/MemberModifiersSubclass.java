@@ -21,5 +21,4 @@ public class MemberModifiersSubclass extends MemberModifiers {
 //        System.out.println(mmTwo.protected_i); -> Compile error, cannot access from parent
 
     }
-
 }
