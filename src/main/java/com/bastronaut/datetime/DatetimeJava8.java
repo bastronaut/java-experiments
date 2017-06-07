@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created by Bas on 4-6-2017.
@@ -20,6 +21,8 @@ public class DatetimeJava8 {
         locals();
         localsFactory();
         timeGetters();
+        timeCalculation();
+        testCompareTo();
     }
 
     // represent date time from context of observer
@@ -72,5 +75,48 @@ public class DatetimeJava8 {
 
         int hour = lt.getHour();
         int hour2 = ldt.getHour();
+    }
+
+    public static void timeCalculation() {
+        LocalDate ld = LocalDate.now();
+        LocalDate newDate = ld.plusMonths(2);
+        System.out.println(newDate.toString());
+
+        //ChronoUnit allows selecting a time unit for time calculationss
+        LocalDate newDate2 = newDate.plus(5, ChronoUnit.DAYS);
+        ChronoUnit cu = ChronoUnit.SECONDS; // see public fields here
+        System.out.println(cu);
+    }
+
+    public static void testCompareTo() {
+        LocalDate ld = LocalDate.of(2017, 11, 15);
+        LocalDate now = LocalDate.now();
+        int difference = ld.compareTo(now); // returns 5? the month diference?
+        print(difference);
+
+        LocalDate ld2 = LocalDate.of(2017, 11, 19);
+        LocalDate ld3 = LocalDate.of(2017, 11, 16);
+        int difference2 = ld2.compareTo(ld3); // returns 3 - the day difference
+        print(difference2);
+
+        LocalDate ld4 = LocalDate.of(2017, 12, 19);
+        LocalDate ld5 = LocalDate.of(2017, 11, 16);
+        int difference3 = ld4.compareTo(ld5); // returns 1 - the month difference
+        print(difference3);
+
+        LocalDate ld6 = LocalDate.of(2020, 12, 19);
+        LocalDate ld7 = LocalDate.of(2017, 11, 16);
+        int difference4 = ld6.compareTo(ld7); // returns 3-  the year difference
+        print(difference4);
+
+        // seems compareto returns the difference of the 'highest' time value.
+        // api states negative if smaller, 0 if equals, positive if larger
+
+
+    }
+
+    // function for being lazy
+    public static void print(Object o) {
+        System.out.println(o.toString());
     }
 }
