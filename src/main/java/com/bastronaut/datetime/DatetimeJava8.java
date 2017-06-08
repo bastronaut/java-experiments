@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalAdjuster;
 
 /**
  * Created by Bas on 4-6-2017.
@@ -22,7 +24,9 @@ public class DatetimeJava8 {
         localsFactory();
         timeGetters();
         timeCalculation();
-        testCompareTo();
+        testCompareToLD();
+        testCompareToLDT();
+        testTemporalAdjuster();
     }
 
     // represent date time from context of observer
@@ -88,7 +92,7 @@ public class DatetimeJava8 {
         System.out.println(cu);
     }
 
-    public static void testCompareTo() {
+    public static void testCompareToLD() {
         LocalDate ld = LocalDate.of(2017, 11, 15);
         LocalDate now = LocalDate.now();
         int difference = ld.compareTo(now); // returns 5? the month diference?
@@ -109,11 +113,39 @@ public class DatetimeJava8 {
         int difference4 = ld6.compareTo(ld7); // returns 3-  the year difference
         print(difference4);
 
-        // seems compareto returns the difference of the 'highest' time value.
+        // compareto returns from earliest to latest value, ie years difference before month
+        // difference if there is one.
         // api states negative if smaller, 0 if equals, positive if larger
-
-
     }
+
+    public static void testCompareToLDT() {
+        // different behavior with LocalDateTime than LocalDate, returns -1, 0 or 1,
+        // rather than some nuber of what the largest difference value is
+        LocalDateTime ldt = LocalDateTime.of(2017, 12, 11, 15, 33, 59);
+        LocalDateTime ldt2 = LocalDateTime.of(2017, 12, 11, 12, 31, 51);
+        LocalDateTime ldt3 = LocalDateTime.of(2017, 12, 11, 12, 31, 51);
+        print(ldt.compareTo(ldt2));
+        print(ldt2.compareTo(ldt));
+        print(ldt2.compareTo(ldt3));
+    }
+
+    public static void testTemporalAdjuster() {
+        LocalDate now = LocalDate.now();
+
+        LocalDate ld2 = now.withYear(2015);
+        print(ld2);
+        print(ld2.withDayOfYear(3)); // weird method day of year ah well
+        print(ld2.withDayOfMonth(15));
+
+        // probably not often used with a temporaladjuster impl. Maybe ChronoLocalDate
+        TemporalAdjuster ta = new TemporalAdjuster() {
+            @Override
+            public Temporal adjustInto(Temporal temporal) {
+                return null;
+            }
+        };
+    }
+
 
     // function for being lazy
     public static void print(Object o) {
